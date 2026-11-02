@@ -56,13 +56,14 @@ export const salesReportRoutes: Routes = [
   {
     path: 'sales-by-region-tabular',
     component: SalesByRegionTabularComponent
-  }
-];
+  },
   // M-063: Route for the new Sales Data Report.
   {
     path: 'sales-data-report',
     component: SalesDataReportComponent
-  },
+  }
+];
+
 // Agent performance routes
 export const agentPerformanceRoutes: Routes = [
   {
