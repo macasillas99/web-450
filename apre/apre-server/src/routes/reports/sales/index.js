@@ -78,4 +78,37 @@ router.get('/regions/:region', (req, res, next) => {
   }
 });
 
+/**
+ * M-063: Return sales totals and transaction counts by region.
+ * This endpoint provides the data for the Sales Data Report.
+ */
+router.get('/summary', (req, res, next) => {
+  try {
+    mongo(async db => {
+      const sales = await db.collection('sales').aggregate([
+        {
+          $group: {
+            _id: '$region',
+            totalSales: { $sum: '$amount' },
+            transactionCount: { $sum: 1 }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            region: '$_id',
+            totalSales: 1,
+            transactionCount: 1
+          }
+        },
+        { $sort: { region: 1 } }
+      ]).toArray();
+
+      res.send(sales);
+    }, next);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
