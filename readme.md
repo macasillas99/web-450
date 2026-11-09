@@ -56,3 +56,18 @@ The server requires the configured MongoDB connection.
 `Week2-Major: document sales report setup and testing`
 
 **Next:** We'll verify the code and tests before creating the final Blackboard ZIP.
+
+
+## Week 3 Major Task — M-084 Agent Performance Report
+
+Implemented a MongoDB aggregation report at `GET /api/reports/agent-performance/summary` returning each agent's name, total calls, and total call duration. The Angular report is available under **Agent Performance Reports > Agent Performance Report**, at `/reports/agent-performance/agent-performance-summary`. The report displays a table with loading, empty and error states.
+
+### Run and test
+
+1. `cd apre/apre-server && npm install && npm start` (configure MongoDB according to `apre/apre-client/README.md` and project server settings).
+2. In another terminal: `cd apre/apre-client && npm install && npm start`.
+3. Server tests: `cd apre/apre-server && npm test -- --runInBand`.
+4. Angular tests: `cd apre/apre-client && npm test -- --watch=false --browsers=ChromeHeadless` (requires installed Chrome).
+5. Angular build: `cd apre/apre-client && npm run build`.
+
+M-084 adds 3 server tests in `apre/apre-server/test/routes/reports/agent-performance/summary.spec.js` and 3 client tests in `apre/apre-client/src/app/reports/agent-performance/agent-performance-summary/agent-performance-summary.component.spec.ts`. The test commands are provided for independent verification.
