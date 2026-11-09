@@ -313,7 +313,9 @@ export class MainLayoutComponent {
   ];
 
   agentPerformanceReports = [
-    { name: 'Call Duration by Date Range', url: '/reports/agent-performance/call-duration-by-date-range' }
+    { name: 'Call Duration by Date Range', url: '/reports/agent-performance/call-duration-by-date-range' },
+    // M-084: Make the new performance report accessible through the sidebar.
+    { name: 'Agent Performance Report', url: '/reports/agent-performance/agent-performance-summary' }
     // Add more reports as needed
   ];
 
