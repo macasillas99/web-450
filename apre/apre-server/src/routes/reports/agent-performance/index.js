@@ -93,4 +93,46 @@ router.get('/call-duration-by-date-range', (req, res, next) => {
   }
 });
 
+
+/**
+ * Week 3 Major M-084: Aggregate overall agent performance for a new report.
+ * Group call records by agent and return total calls and total call duration.
+ */
+router.get('/summary', (req, res, next) => {
+  try {
+    mongo(async db => {
+      const data = await db.collection('agentPerformance').aggregate([
+        {
+          $lookup: {
+            from: 'agents',
+            localField: 'agentId',
+            foreignField: 'agentId',
+            as: 'agentDetails'
+          }
+        },
+        { $unwind: '$agentDetails' },
+        {
+          $group: {
+            _id: '$agentDetails.name',
+            totalCalls: { $sum: 1 },
+            totalCallDuration: { $sum: '$callDuration' }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            agent: '$_id',
+            totalCalls: 1,
+            totalCallDuration: 1
+          }
+        },
+        { $sort: { agent: 1 } }
+      ]).toArray();
+      res.send(data);
+    }, next);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
