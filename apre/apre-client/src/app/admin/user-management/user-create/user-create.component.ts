@@ -28,7 +28,8 @@ import { environment } from '../../../../environments/environment';
 
         <div class="form__group">
           <label class="label" for="password">Email<span class="required">*</span></label>
-          <input class="input" type="text" formControlName="email" id="email" name="email">
+          <!-- Week 4 minor m-003: explain the required email format without changing validation. -->
+          <input class="input" type="text" formControlName="email" id="email" name="email" title="Please enter a valid email address.">
         </div>
 
         <div class="form__group">
