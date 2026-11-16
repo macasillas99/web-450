@@ -20,6 +20,7 @@ import { UserManagementComponent } from './admin/user-management/user-management
 import { UserCreateComponent } from './admin/user-management/user-create/user-create.component';
 import { SalesByRegionComponent } from './reports/sales/sales-by-region/sales-by-region.component';
 import { SalesComponent } from './reports/sales/sales.component';
+import { AgentPerformanceByMonthComponent } from './reports/agent-performance/agent-performance-by-month/agent-performance-by-month.component';
 import { AgentPerformanceSummaryComponent } from './reports/agent-performance/agent-performance-summary/agent-performance-summary.component';
 import { AgentPerformanceComponent } from './reports/agent-performance/agent-performance.component';
 import { CallDurationByDateRangeComponent } from './reports/agent-performance/call-duration-by-date-range/call-duration-by-date-range.component';
@@ -71,6 +72,8 @@ export const agentPerformanceRoutes: Routes = [
     path: 'call-duration-by-date-range',
     component: CallDurationByDateRangeComponent
   },
+  // Week 4 M-085: Route for monthly agent performance.
+  { path: 'agent-performance-by-month', component: AgentPerformanceByMonthComponent },
   // M-084: Display the agent performance summary report.
   {
     path: 'agent-performance-summary',
