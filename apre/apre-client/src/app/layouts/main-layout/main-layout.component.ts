@@ -314,6 +314,8 @@ export class MainLayoutComponent {
 
   agentPerformanceReports = [
     { name: 'Call Duration by Date Range', url: '/reports/agent-performance/call-duration-by-date-range' },
+    // Week 4 M-085: Expose the monthly report in the navigation menu.
+    { name: 'Agent Performance by Month', url: '/reports/agent-performance/agent-performance-by-month' },
     // M-084: Make the new performance report accessible through the sidebar.
     { name: 'Agent Performance Report', url: '/reports/agent-performance/agent-performance-summary' }
     // Add more reports as needed
