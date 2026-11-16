@@ -135,4 +135,25 @@ router.get('/summary', (req, res, next) => {
   }
 });
 
+/** Week 4 M-085: Aggregate calls for each agent per year and month. */
+router.get('/by-month', (req, res, next) => {
+  try {
+    mongo(async db => {
+      const rows = await db.collection('agentPerformance').aggregate([
+        { $match: { date: { $type: 'date' } } },
+        { $lookup: { from: 'agents', localField: 'agentId', foreignField: 'agentId', as: 'agentDetails' } },
+        { $unwind: '$agentDetails' },
+        { $group: {
+          _id: { year: { $year: '$date' }, month: { $month: '$date' }, agent: '$agentDetails.name' },
+          totalCalls: { $sum: 1 }, totalCallDuration: { $sum: '$callDuration' }
+        } },
+        { $project: { _id: 0, year: '$_id.year', month: '$_id.month',
+          agent: '$_id.agent', totalCalls: 1, totalCallDuration: 1 } },
+        { $sort: { year: 1, month: 1, agent: 1 } }
+      ]).toArray();
+      res.send(rows);
+    }, next);
+  } catch (err) { next(err); }
+});
+
 module.exports = router;
