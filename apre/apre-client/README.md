@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Week 4 M-085: Agent Performance by Month
+
+In `apre/apre-server`, run `npm install` then `npm start`.
+In `apre/apre-client`, run `npm install` then `npm start`.
+Sign in and navigate to `/reports/agent-performance/agent-performance-by-month`.
+The Angular component fetches `GET /api/reports/agent-performance/by-month` and displays monthly per-agent call counts and call durations.
+
+Test commands (tests have not been executed in this environment):
+- Server: `npm test -- --runInBand` from `apre/apre-server`
+- Client: `npm test -- --watch=false` from `apre/apre-client`
