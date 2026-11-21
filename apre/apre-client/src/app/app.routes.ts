@@ -24,6 +24,7 @@ import { AgentPerformanceByMonthComponent } from './reports/agent-performance/ag
 import { AgentPerformanceSummaryComponent } from './reports/agent-performance/agent-performance-summary/agent-performance-summary.component';
 import { AgentPerformanceComponent } from './reports/agent-performance/agent-performance.component';
 import { CallDurationByDateRangeComponent } from './reports/agent-performance/call-duration-by-date-range/call-duration-by-date-range.component';
+import { CustomerFeedbackSummaryComponent } from './reports/customer-feedback/customer-feedback-summary/customer-feedback-summary.component';
 import { ChannelRatingByMonthComponent } from './reports/customer-feedback/channel-rating-by-month/channel-rating-by-month.component';
 import { CustomerFeedbackComponent } from './reports/customer-feedback/customer-feedback.component';
 import { SalesByRegionTabularComponent } from './reports/sales/sales-by-region-tabular/sales-by-region-tabular.component';
@@ -83,6 +84,8 @@ export const agentPerformanceRoutes: Routes = [
 
 // Customer feedback routes
 export const customerFeedbackRoutes: Routes = [
+  // Week 4 M-105: The dedicated Customer Feedback report.
+  { path: 'customer-feedback-report', component: CustomerFeedbackSummaryComponent },
   {
     path: 'channel-rating-by-month',
     component: ChannelRatingByMonthComponent
