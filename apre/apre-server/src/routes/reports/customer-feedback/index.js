@@ -92,4 +92,37 @@ router.get('/channel-rating-by-month', (req, res, next) => {
   }
 });
 
+/**
+ * Week 4 Major M-105: Build a customer feedback summary report.
+ * Group survey responses by channel so the client can display counts and
+ * average ratings without requiring the user to select a month.
+ */
+router.get('/summary', (req, res, next) => {
+  try {
+    mongo(async db => {
+      const results = await db.collection('customerFeedback').aggregate([
+        {
+          $group: {
+            _id: '$channel',
+            responseCount: { $sum: 1 },
+            averageRating: { $avg: '$rating' }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            channel: '$_id',
+            responseCount: 1,
+            averageRating: { $round: ['$averageRating', 2] }
+          }
+        },
+        { $sort: { channel: 1 } }
+      ]).toArray();
+      res.send(results);
+    }, next);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
