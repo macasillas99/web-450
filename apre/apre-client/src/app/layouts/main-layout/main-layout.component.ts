@@ -322,7 +322,9 @@ export class MainLayoutComponent {
   ];
 
   customerFeedbackReports = [
-    { name: 'Channel Rating by Month', url: '/reports/customer-feedback/channel-rating-by-month' }
+    { name: 'Channel Rating by Month', url: '/reports/customer-feedback/channel-rating-by-month' },
+    // Week 4 M-105: Add dedicated Customer Feedback report to the sidebar.
+    { name: 'Customer Feedback Report', url: '/reports/customer-feedback/customer-feedback-report' }
     // Add more reports as needed
   ];
 
